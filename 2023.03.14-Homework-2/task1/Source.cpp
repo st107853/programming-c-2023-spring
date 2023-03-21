@@ -125,6 +125,7 @@ int main(int argc, char* argv[])
 	{
 		delete zoo[i];
 	}
+	delete zoo;
 
 	return EXIT_SUCCESS;
 }
