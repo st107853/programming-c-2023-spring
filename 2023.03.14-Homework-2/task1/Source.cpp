@@ -52,7 +52,7 @@ int naturalSelection(Animal* victim, Animal* aggressor)
 
 		(*aggressor).setPower();
 
-		return(1); // жертва съедена агрессором
+		return(1); // the victim is eaten by the aggressor
 	}
 	else if ((exist2 and not exist1) or (exist1 and exist2 and (*victim).getPower() > (*aggressor).getPower()))
 	{
@@ -60,11 +60,11 @@ int naturalSelection(Animal* victim, Animal* aggressor)
 
 		(*victim).setPower();
 
-		return(2); // агрессор съеден жертвой
+		return(2); // the aggressor is eaten by the victim
 	}
 	else
 	{
-		return(0); // никто не пострадал
+		return(0); // no one die
 	}
 }
 
@@ -73,9 +73,9 @@ void Fun(Animal** room, int first, int second, int n)
 	int done = naturalSelection(room[first], room[second]);
 
 
-	if (n == 1 or (n == 3 and done == 0))
+	if (n == 1 or (n == 2 and done == 0))
 	{
-		std::cout << "The winner is " << (*room[0]).getName() << " the " << Pets[(*room[0]).getType()];
+		std::cout << "The winner is " << (*room[n - 1]).getName() << " the " << Pets[(*room[n-1]).getType()] << n;
 	}
 	else if (done == 1)
 	{
@@ -96,16 +96,15 @@ void Fun(Animal** room, int first, int second, int n)
 	}
 	else
 	{
-		std::cout << "return" << std::endl;
+		std::cout << "error" << std::endl;
 	}
 }
 
 int main(int argc, char* argv[])
 {
-
-	Animal* zoo[10]{};
-
-	for (int i = 0; i < 10; ++i)
+	Animal* zoo[20];
+	
+	for (int i = 0; i < 20; ++i)
 	{
 		int type = std::rand() % 10 + 1;
 		std::string name = "st" + std::to_string(107027 + i);
@@ -114,18 +113,14 @@ int main(int argc, char* argv[])
 		zoo[i] = new Animal(type, name, pow);
 	}
 
-	for (int i = 0; i < 10; ++i)
+	/*
+	for (int i = 0; i < 20; ++i)
 	{
 		printInfo(*zoo[i]);
 	}
 
-	Fun(zoo, 0, 1, 10);
-
-	for (int i = 0; i < 10; ++i)
-	{
-		delete zoo[i];
-	}
-	delete zoo;
+	Fun(zoo, 0, 1, 20);
+	*/
 
 	return EXIT_SUCCESS;
 }
